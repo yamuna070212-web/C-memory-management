@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    size_t huge = (size_t)-1; // deliberately huge to trigger failure
+    int *p = (int *)malloc(huge);
+
+    if (p == NULL) {
+        printf("Allocation failed as expected\n");
+    } else {
+        free(p);
+    }
+    return 0;
+}
+
+Output:
+
+Allocation failed as expected
