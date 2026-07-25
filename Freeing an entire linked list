@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+void free_list(Node *head) {
+    while (head != NULL) {
+        Node *next = head->next;
+        free(head);
+        head = next;
+    }
+}
+
+int main() {
+    Node *head = (Node *)malloc(sizeof(Node));
+    head->data = 1;
+    head->next = (Node *)malloc(sizeof(Node));
+    head->next->data = 2;
+    head->next->next = NULL;
+
+    free_list(head);
+    printf("List freed successfully\n");
+    return 0;
+}
+
+Output:
+
+List freed successfully
