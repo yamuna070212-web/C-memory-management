@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int id;
+    float score;
+} Student;
+
+int main() {
+    Student *s = (Student *)malloc(sizeof(Student));
+    if (s == NULL) return 1;
+
+    s->id = 1;
+    s->score = 92.5;
+    printf("ID: %d, Score: %.2f\n", s->id, s->score);
+
+    free(s);
+    return 0;
+}
+
+Output:
+
+ID: 1, Score: 92.50
