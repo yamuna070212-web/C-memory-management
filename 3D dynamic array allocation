@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int x = 2, y = 2, z = 2;
+    int ***cube = (int ***)malloc(x * sizeof(int **));
+
+    for (int i = 0; i < x; i++) {
+        cube[i] = (int **)malloc(y * sizeof(int *));
+        for (int j = 0; j < y; j++)
+            cube[i][j] = (int *)malloc(z * sizeof(int));
+    }
+
+    cube[1][1][1] = 99;
+    printf("cube[1][1][1] = %d\n", cube[1][1][1]);
+
+    for (int i = 0; i < x; i++) {
+        for (int j = 0; j < y; j++) free(cube[i][j]);
+        free(cube[i]);
+    }
+    free(cube);
+    return 0;
+}
+
+Output:
+
+cube[1][1][1] = 99
