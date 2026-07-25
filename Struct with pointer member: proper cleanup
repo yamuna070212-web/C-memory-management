@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char *description;
+} Item;
+
+Item *create_item(const char *desc) {
+    Item *item = (Item *)malloc(sizeof(Item));
+    item->description = (char *)malloc(strlen(desc) + 1);
+    strcpy(item->description, desc);
+    return item;
+}
+
+void free_item(Item *item) {
+    free(item->description); // free inner pointer first
+    free(item);               // then the struct itself
+}
+
+int main() {
+    Item *item = create_item("Sample item");
+    printf("%s\n", item->description);
+
+    free_item(item);
+    return 0;
+}
+
+Output:
+
+Sample item
