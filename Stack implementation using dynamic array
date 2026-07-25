@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int *data;
+    int top;
+    int capacity;
+} Stack;
+
+Stack *create_stack(int capacity) {
+    Stack *s = (Stack *)malloc(sizeof(Stack));
+    s->data = (int *)malloc(capacity * sizeof(int));
+    s->top = -1;
+    s->capacity = capacity;
+    return s;
+}
+
+void push(Stack *s, int value) { s->data[++s->top] = value; }
+int pop(Stack *s) { return s->data[s->top--]; }
+
+void free_stack(Stack *s) {
+    free(s->data);
+    free(s);
+}
+
+int main() {
+    Stack *s = create_stack(5);
+    push(s, 10);
+    push(s, 20);
+    printf("Popped: %d\n", pop(s));
+
+    free_stack(s);
+    return 0;
+}
+
+Output:
+
+Popped: 20
