@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int n = 3;
+    char **names = (char **)malloc(n * sizeof(char *));
+
+    const char *values[] = {"Alice", "Bob", "Charlie"};
+    for (int i = 0; i < n; i++) {
+        names[i] = (char *)malloc(strlen(values[i]) + 1);
+        strcpy(names[i], values[i]);
+    }
+
+    for (int i = 0; i < n; i++) printf("%s\n", names[i]);
+
+    for (int i = 0; i < n; i++) free(names[i]);
+    free(names);
+    return 0;
+}
+
+Output:
+
+Alice
+Bob
+Charlie
