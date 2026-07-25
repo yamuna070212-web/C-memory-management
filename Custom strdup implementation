@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char *my_strdup(const char *src) {
+    char *copy = (char *)malloc(strlen(src) + 1);
+    if (copy != NULL) strcpy(copy, src);
+    return copy;
+}
+
+int main() {
+    char *original = "Duplicate me";
+    char *copy = my_strdup(original);
+
+    if (copy != NULL) {
+        printf("Copy: %s\n", copy);
+        free(copy);
+    }
+    return 0;
+}
+
+Output:
+
+Copy: Duplicate me
