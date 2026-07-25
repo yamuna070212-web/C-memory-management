@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int rows = 3, cols = 4;
+    int *matrix = (int *)malloc(rows * cols * sizeof(int));
+    if (matrix == NULL) return 1;
+
+    // Access using matrix[i * cols + j]
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            matrix[i * cols + j] = i + j;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++)
+            printf("%d ", matrix[i * cols + j]);
+        printf("\n");
+    }
+
+    free(matrix);
+    return 0;
+}
+
+Output:
+
+0 1 2 3 
+1 2 3 4 
+2 3 4 5
