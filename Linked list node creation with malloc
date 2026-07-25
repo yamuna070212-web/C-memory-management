@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+Node *create_node(int value) {
+    Node *node = (Node *)malloc(sizeof(Node));
+    node->data = value;
+    node->next = NULL;
+    return node;
+}
+
+int main() {
+    Node *head = create_node(10);
+    printf("Node data: %d\n", head->data);
+    free(head);
+    return 0;
+}
+
+Output:
+
+Node data: 10
