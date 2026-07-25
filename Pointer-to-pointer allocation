@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void allocate_int(int **p, int value) {
+    *p = (int *)malloc(sizeof(int));
+    **p = value;
+}
+
+int main() {
+    int *p = NULL;
+    allocate_int(&p, 77);
+    printf("Value: %d\n", *p);
+
+    free(p);
+    return 0;
+}
+
+Output:
+
+Value: 77
