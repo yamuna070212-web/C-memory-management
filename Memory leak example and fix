@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void leaky() {
+    int *p = (int *)malloc(sizeof(int));
+    *p = 100;
+    // BUG: no free(p) here -> memory leak
+}
+
+void fixed() {
+    int *p = (int *)malloc(sizeof(int));
+    *p = 100;
+    free(p); // FIX: always free what you allocate
+}
+
+int main() {
+    leaky();
+    fixed();
+    printf("Leak demonstrated and fixed version shown\n");
+    return 0;
+}
+
+Output:
+
+Leak demonstrated and fixed version shown
