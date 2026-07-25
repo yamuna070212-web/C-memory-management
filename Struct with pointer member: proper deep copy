@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char *name;
+    int age;
+} Person;
+
+Person deep_copy(Person original) {
+    Person copy;
+    copy.age = original.age;
+    copy.name = (char *)malloc(strlen(original.name) + 1);
+    strcpy(copy.name, original.name);
+    return copy;
+}
+
+int main() {
+    Person p1;
+    p1.name = (char *)malloc(20);
+    strcpy(p1.name, "Alice");
+    p1.age = 30;
+
+    Person p2 = deep_copy(p1);
+    strcpy(p2.name, "Modified"); // doesn't affect p1.name
+
+    printf("p1.name = %s\n", p1.name);
+    printf("p2.name = %s\n", p2.name);
+
+    free(p1.name);
+    free(p2.name);
+    return 0;
+}
+
+Output:
+
+p1.name = Alice
+p2.name = Modified
