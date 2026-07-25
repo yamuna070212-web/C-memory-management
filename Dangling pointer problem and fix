@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *p = (int *)malloc(sizeof(int));
+    *p = 5;
+    free(p);
+    // p is now a dangling pointer; using *p here is undefined behavior
+
+    p = NULL; // FIX: null it out immediately after freeing
+    if (p == NULL) printf("Dangling pointer avoided\n");
+    return 0;
+}
+
+Output:
+
+Dangling pointer avoided
