@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void allocate_and_lose() {
+    int *p = (int *)malloc(sizeof(int) * 100);
+    *p = 1;
+    // Leak: no free(p). Tools like `valgrind --leak-check=full`
+    // would report this as "definitely lost" memory.
+}
+
+int main() {
+    allocate_and_lose();
+    printf("Function returned, but memory was never freed\n");
+    return 0;
+}
+
+Output:
+
+Function returned, but memory was never freed
