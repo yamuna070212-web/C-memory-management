@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int *create_array(int n) {
+    int *arr = (int *)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++) arr[i] = i + 1;
+    return arr; // caller is responsible for freeing this
+}
+
+int main() {
+    int n = 5;
+    int *arr = create_array(n);
+
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    printf("\n");
+
+    free(arr); // caller must remember to free
+    return 0;
+}
+
+Output:
+
+1 2 3 4 5
