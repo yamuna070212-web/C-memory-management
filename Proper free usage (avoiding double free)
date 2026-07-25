@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *p = (int *)malloc(sizeof(int));
+    *p = 10;
+    printf("%d\n", *p);
+
+    free(p);
+    p = NULL; // prevents accidental double free
+
+    if (p == NULL) printf("Pointer safely nulled after free\n");
+    return 0;
+}
+
+Output:
+
+10
+Pointer safely nulled after free
